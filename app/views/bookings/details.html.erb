@@ -1,0 +1,47 @@
+<div id="calendar" style="height: 800px"></div>
+
+<script>
+    const Calendar = window.tui.Calendar;
+
+    const calendar = new Calendar('#calendar', {
+        defaultView: 'week',
+        template: {
+            time(event) {
+                const { end, title } = event;
+
+                return `<span style="color: white;">${title} [Until ${end}]</span>`;
+            },
+            allday(event) {
+                return `<span style="color: gray;">${event.title}</span>`;
+            },
+        },
+        calendars: [
+            {
+                id: 'unavailable',
+                name: 'Unavailable',
+                backgroundColor: '#78787878',
+            },
+            {
+                id: 'personal',
+                name: 'Personal',
+                backgroundColor: '#078878',
+            },
+        ],
+    });
+
+    $.ajax({
+        url: '/bookings/scheduled',
+        type: "get",
+        data: "",
+        success: function(data) {
+            calendar.createEvents(data);
+        },
+        error: function(data) {}
+    });
+
+    calendar.setOptions({
+        week: {
+            taskView: false,
+        }
+    });
+</script>
