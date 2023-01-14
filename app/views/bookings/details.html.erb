@@ -1,3 +1,6 @@
+<button id="newScheduleBtn">New Schedule</button>
+<button id="prevBtn">Prev</button>
+<button id="nextBtn">Next</button>
 <div id="calendar" style="height: 800px"></div>
 
 <script>
@@ -43,5 +46,24 @@
         week: {
             taskView: false,
         }
+    });
+
+    const newBtn = document.getElementById("newScheduleBtn");
+    const prevBtn = document.getElementById("prevBtn");
+    const nextBtn = document.getElementById("nextBtn");
+
+    newBtn.addEventListener("click", e => {
+        calendar.openCreationPopup({
+            start: new moment("2015-12-24").format("YYYY-MM-DD"),
+            end: new moment("2015-12-24").format("YYYY-MM-DD")
+        });
+    });
+
+    prevBtn.addEventListener("click", e => {
+        calendar.prev();
+    });
+
+    nextBtn.addEventListener("click", e => {
+        calendar.next();
     });
 </script>
