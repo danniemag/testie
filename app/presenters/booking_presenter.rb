@@ -34,8 +34,4 @@ class BookingPresenter
   def restricted_information
     booking.user_id == user_id ? ['personal', 'My Schedule'] : %w[unavailable Unavailable]
   end
-
-  def duration
-    ActiveSupport::Duration.build(booking.ends - booking.starts).inspect
-  end
 end
