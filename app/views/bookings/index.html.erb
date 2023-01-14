@@ -1,0 +1,53 @@
+<div id="booking" class="section">
+  <div class="section-center">
+    <div class="container">
+      <div class="row">
+        <div class="booking-form">
+          <form>
+            <div class="row no-margin">
+              <div class="col-md-3">
+                <div class="form-header">
+                  <h2>Book Now</h2>
+                </div>
+              </div>
+              <div class="col-md-7">
+                <div class="row no-margin">
+                  <div class="col-md-5">
+                    <div class="form-group">
+                      <span class="form-label">Start Time</span>
+                      <input class="form-control" type="date">
+                    </div>
+                  </div>
+                  <div class="col-md-5">
+                    <div class="form-group">
+                      <span class="form-label">End Time</span>
+                      <input class="form-control" type="date">
+                    </div>
+                  </div>
+                  <div class="col-md-2">
+                    <div class="form-group">
+                      <span class="form-label">Duration</span>
+                      <select class="form-control">
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                      </select>
+                      <span class="select-arrow"></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-2">
+                <div class="form-btn">
+                  <%= link_to scheduled_bookings_path do %>
+                    <button class="submit-btn">Check availability</button>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
