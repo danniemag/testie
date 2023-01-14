@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   resources :bookings, only: :index do
     collection do
+      get :details
       get :scheduled
     end
   end
