@@ -1,6 +1,6 @@
 # Testie
 Rails app for scheduling management.
-
+<img width="1351" alt="image" src="https://user-images.githubusercontent.com/6585343/212574404-4196f47a-3290-47e4-a018-f000ac50a6c1.png">
 ____________
 
 ## Setting up environment
