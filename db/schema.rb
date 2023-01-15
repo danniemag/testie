@@ -19,7 +19,7 @@ ActiveRecord::Schema.define(version: 2023_01_14_024203) do
   create_table "bookings", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.datetime "starts", null: false
     t.datetime "ends", null: false
-    t.integer "duration", null: false
+    t.integer "duration"
     t.bigint "user_id", null: false
     t.index ["user_id"], name: "index_bookings_on_user_id"
   end
