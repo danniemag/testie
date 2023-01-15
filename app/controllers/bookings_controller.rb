@@ -21,11 +21,11 @@ class BookingsController < ApplicationController
     else
       bookings = find_bookings(chosen_date)
 
-      t = (chosen_date == Date.today) ? Time.now : chosen_date.to_time
+      t = (chosen_date == Date.today) ? Time.now.utc : chosen_date.to_time.utc.beginning_of_day
       slot_multiple_of_fifteen = (t - t.sec - (t.min % 15 * 60)) + duration.minutes
 
       (slot_multiple_of_fifteen.to_i..slot_multiple_of_fifteen.end_of_day.to_i).to_a.in_groups_of(15.minutes).collect(&:first).collect do |t|
-        next if has_overlapping?(bookings, Time.at(t).utc, duration)
+        next if has_overlapping?(bookings, Time.at(t), duration)
         @available_slots << Time.at(t).utc
       end
       @available_slots
@@ -33,15 +33,16 @@ class BookingsController < ApplicationController
   end
 
   def create
-    @booking = Booking.new(booking_params)
+    @booking = Booking.new(booking_params.merge(ends: params[:booking][:starts].to_time + (params[:booking][:duration].to_i).minutes))
 
     if @booking.save
       flash[:success] = "Appointment successfully scheduled"
-      render :index
+      redirect_to user_bookings_path
     else
       @booking.errors.full_messages.each do |message|
-        flash[:danger] = message
+        flash[:error] = message
       end
+      render :index
     end
   end
 
@@ -103,6 +104,6 @@ class BookingsController < ApplicationController
   end
 
   def get_user_bookings
-    @user_bookings = Booking.where(user_id: current_user.id).where('starts > ?', Date.today)
+    @user_bookings = Booking.where(user_id: current_user.id).where('starts > ?', Date.today).order(:starts)
   end
 end

@@ -35,15 +35,19 @@
               <div class="dc-dayspaces-holder dc-titlewithbtn">
 
                 <div class="dc-spaces-holder">
-                  <h6>Choose a slot</h6>
                   <ul class="dc-spaces-wrap">
-                    <%= form.select :starts, @available_slots,
-                                    { include_blank: false },
-                                    { class: 'form-control', style: 'height: auto' } %>
-                    <%= form.hidden_field :duration, value: params[:duration] %>
-                    <%= form.hidden_field :ends, value: params[:starts].to_datetime + (params[:duration].to_i).minutes %>
-                    <%= form.hidden_field :user_id, value: current_user.id %>
+                    <% @available_slots.each_with_index do |as, i| %>
+                      <li>
+                        <a class="dc-spaces">
+                          <div class="align-content-center">
+                            <%= as.to_s %> <%= form.radio_button :starts, as.to_s %></div>
+                        </a>
+                      </li>
+                    <% end %>
                   </ul>
+                  <%= form.hidden_field :duration, value: params[:duration] %>
+                  <%= form.hidden_field :ends, value: params[:starts].to_time %>
+                  <%= form.hidden_field :user_id, value: current_user.id %>
                 </div>
                 <div class="dc-rightarea mt-4">
                   <%= form.submit "Save", class: 'submit-btn dc-btn-block' %>
