@@ -24,7 +24,9 @@ users:
 
 
 ## Overview 
-In the pull request you can find some some videos demonstrating app's main features.
+The application can be accessed through this URL:
+[`https://testie.herokuapp.com/users/sign_in`](https://testie.herokuapp.com/users/sign_in)
+
 
 ## Acceptance Criteria
 
