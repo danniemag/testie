@@ -24,6 +24,7 @@ class BookingPresenter
       title: booking_info.last,
       start: booking.starts.utc.strftime('%FT%T'),
       end: booking.ends.utc.strftime('%FT%T'),
+      duration: booking.duration
     }
   end
 

@@ -14,6 +14,7 @@
 //= require turbolinks
 //= require jquery3
 //= require jquery_ujs
+//= require main
 //= require toastui-calendar.min
 //= require toastr.min
-
+//= require vendors/modernizr-2.8.3-respond-1.4.2.min

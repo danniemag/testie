@@ -1,15 +1,14 @@
 # frozen_string_literal: true
 
 class BookingsController < ApplicationController
+  before_action :set_booking, only: %i[edit destroy]
+  before_action :get_user_bookings, only: %i[new user]
   def index; end
 
-  def new; end
+  def new
+    @booking = Booking.new
+    @available_slots = []
 
-  def create
-    x=0
-  end
-
-  def check_slots
     chosen_date = params[:starts].to_date
     duration = params[:duration].to_i
 
@@ -22,10 +21,8 @@ class BookingsController < ApplicationController
     else
       bookings = find_bookings(chosen_date)
 
-      @available_slots = []
-
-      t = chosen_date.to_datetime.utc
-      slot_multiple_of_fifteen = (t - t.sec - (t.min % 15 * 60)) + 15.minutes
+      t = (chosen_date == Date.today) ? Time.now : chosen_date.to_time
+      slot_multiple_of_fifteen = (t - t.sec - (t.min % 15 * 60)) + duration.minutes
 
       (slot_multiple_of_fifteen.to_i..slot_multiple_of_fifteen.end_of_day.to_i).to_a.in_groups_of(15.minutes).collect(&:first).collect do |t|
         next if has_overlapping?(bookings, Time.at(t).utc, duration)
@@ -35,11 +32,48 @@ class BookingsController < ApplicationController
     end
   end
 
+  def create
+    @booking = Booking.new(booking_params)
+
+    if @booking.save
+      flash[:success] = "Appointment successfully scheduled"
+      render :index
+    else
+      @booking.errors.full_messages.each do |message|
+        flash[:danger] = message
+      end
+    end
+  end
+
+  def edit; end
+
+  def update; end
+
+  def destroy
+    @booking.destroy
+
+    flash[:success] = "Appointment successfully deleted"
+
+    redirect_to root_path
+  end
+
+  def user
+    @my_schedules = Booking.where(user_id: current_user.id)
+  end
+
   def scheduled
     render json: response_dataset, status: :ok
   end
 
   private
+
+  def booking_params
+    params.require(:booking).permit(:starts, :ends, :duration, :user_id)
+  end
+
+  def set_booking
+    @booking = Booking.find(params[:id])
+  end
 
   def response_dataset
     results.map do |booking|
@@ -61,10 +95,14 @@ class BookingsController < ApplicationController
     overlaps = false
 
     bookings.map do |booking|
-      overlaps = (slot..slot + duration.minutes).overlaps?(booking.first..booking.last)
+      overlaps = (slot..slot + (duration-1).minutes).overlaps?(booking.first..booking.last)
       break if overlaps
     end
 
     overlaps
+  end
+
+  def get_user_bookings
+    @user_bookings = Booking.where(user_id: current_user.id).where('starts > ?', Date.today)
   end
 end

@@ -1,0 +1,39 @@
+<div class="dc-subpanel mt-5" style="border-top: 1px solid #eee !important;">
+  <div class="dc-subpaneltitle dc-subpaneltitlevtwo">
+    <span>My Schedules <em>(<%= dataset.size %>)</em></span>
+    <% if display_user_button %>
+      <div class="dc-rightarea">
+        <div class="dc-btnaction">
+          <%= link_to user_bookings_path, class: 'dc-btn dc-btn-del dc-editbtn' do %>
+            <i class="fa fa-list"></i> Show All</a>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+  <% dataset.each do |schedule| %>
+    <div class="dc-subpanel">
+      <div class="dc-subpaneltitle dc-subpaneltitlevtwo">
+        <span>
+          <%= schedule.starts.strftime('%A, %y-%m-%d') %>
+          <em> (<%= schedule.starts.strftime('%T') %> - <%= schedule.ends.strftime('%T') %>)</em>
+        </span>
+        <% if display_controllers %>
+          <div class="dc-rightarea">
+            <div class="dc-btnaction">
+              <%= link_to '', { class: 'dc-editbtn',
+                                'data-bs-toggle': 'modal',
+                                'data-bs-target': "#modalEdit#{schedule.id}" } do %>
+                <i class="fas fa-pencil-alt"></i>
+              <% end %>
+              <%= link_to bookings_path(id: schedule.id), method: :delete, class: 'dc-delbtn' do %>
+                <i class="fas fa-trash-alt"></i>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+</div>

@@ -1,18 +1,18 @@
-/*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
- * listed below.
- *
- * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
- * vendor/assets/stylesheets directory can be referenced here using a relative path.
- *
- * You're free to add application-wide styles to this file and they'll appear at the bottom of the
- * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
- * files in this directory. Styles in this file should be added after the last require_* statement.
- * It is generally better to create a new file per style scope.
- *
- *= require_tree .
- *= require_self
- */
-
+@import "main/vendors/bootstrap.min";
+@import "main/vendors/animate";
+@import "main/vendors/chosen";
+@import "main/vendors/dashboard";
+@import "main/vendors/dbresponsive";
+@import "main/vendors/fontawesome-all";
+@import "main/vendors/font-awesome.min";
+@import "main/vendors/fullcalendar.min";
+@import "main/vendors/icomoon";
+@import "main/vendors/jquery-ui";
+@import "main/vendors/linearicons";
+@import "main/vendors/normalize";
+@import "main/vendors/owl.carousel.min";
+@import "main/vendors/scrollbar";
+@import "main/vendors/themify-icons";
+@import "main/vendors/transitions";
 @import "toastui-calendar.min";
 @import "toastr";

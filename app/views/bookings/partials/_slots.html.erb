@@ -1,0 +1,63 @@
+<div class="dc-haslayout dc-dbsectionspace">
+  <div class="dc-dashboardbox">
+    <div class="dc-dashboardboxtitle dc-titlewithbtn">
+      <h2>Available Slots</h2>
+    </div>
+    <div class="dc-dashboardboxcontent dc-offerday-holder">
+      <div class="dc-clinics">
+        <div>
+          <figure class="dc-clinicsimg"><img src="images/clinics/img-01.jpg" alt="img description"><figcaption><span class="dc-featuredtag"><i class="fa fa-bolt"></i></span></figcaption></figure>
+        </div>
+        <div class="dc-clinics-content">
+          <div class="dc-clinics-title">
+            <a href="">Location</a>
+            <h4>The Shire Warehouse <i class="fa fa-check-circle"></i></h4>
+            <span>House of Bilbo Baggins, no. 9 - The Shire, Middle Earth</span>
+          </div>
+        </div>
+      </div>
+
+      <div id="dc-childaccordion" class="dc-childaccordion dc-offeraccordion" role="tablist" aria-multiselectable="true">
+
+        <div class="dc-subpanel">
+          <div class="dc-subpaneltitle dc-subpaneltitlevtwo active">
+            <span><%= params[:starts].to_date %> <em>(<%= params[:duration].to_f/60 %> hours)</em></span>
+            <div class="dc-rightarea">
+              <div class="dc-btnaction">
+                <%= link_to root_path, class: 'dc-btn dc-btn-del dc-editbtn' do %>
+                  <i class="fa fa-shuffle"></i> Alter Date</a>
+                <% end %>
+              </div>
+            </div>
+          </div>
+          <%= form_with(model: @booking, local: true) do |form| %>
+            <div class="dc-subpanelcontent" style="display: block;">
+              <div class="dc-dayspaces-holder dc-titlewithbtn">
+
+                <div class="dc-spaces-holder">
+                  <h6>Choose a slot</h6>
+                  <ul class="dc-spaces-wrap">
+                    <%= form.select :starts, @available_slots,
+                                    { include_blank: false },
+                                    { class: 'form-control', style: 'height: auto' } %>
+                    <%= form.hidden_field :duration, value: params[:duration] %>
+                    <%= form.hidden_field :ends, value: params[:starts].to_datetime + (params[:duration].to_i).minutes %>
+                    <%= form.hidden_field :user_id, value: current_user.id %>
+                  </ul>
+                </div>
+                <div class="dc-rightarea mt-4">
+                  <%= form.submit "Save", class: 'submit-btn dc-btn-block' %>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </div>
+        <%= render 'bookings/partials/my_schedules',
+                   dataset: @user_bookings.limit(3),
+                   display_user_button: true,
+                   display_controllers: false
+        %>
+      </div>
+    </div>
+  </div>
+</div>
