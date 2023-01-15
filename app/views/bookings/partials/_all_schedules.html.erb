@@ -1,0 +1,99 @@
+<div class="dc-haslayout dc-dbsectionspace dc-dbsectionspacetest">
+  <div class="dc-dashboardbox">
+    <div class="dc-dashboardboxtitle">
+      <h2>Calendar</h2>
+    </div>
+    <div class="dc-dashboardboxcontent dc-appsetting">
+      <button id="newScheduleBtn"></button>
+
+      <%= button_tag '', id: "prevBtn", class: 'dc-btn dc-btn-del dc-editbtn' do %>
+        <i class="fa fa-caret-left"></i> Previous
+      <% end %>
+
+      <%= button_tag '', id: "nextBtn", class: 'dc-btn dc-btn-del dc-editbtn' do %>
+        Next <i class="fa fa-caret-right"></i>
+      <% end %>
+
+      <div id="calendar" style="height: 800px"></div>
+
+    </div>
+  </div>
+</div>
+
+<script>
+    const Calendar = window.tui.Calendar;
+
+    const calendar = new Calendar('#calendar', {
+        defaultView: 'week',
+        timezone: {
+            zones: [
+                {
+                    timezoneName: Intl.DateTimeFormat().resolvedOptions().timeZone,
+                    // timezoneName: 'Etc/UTC',
+                    displayLabel: '',
+                }
+            ]
+        },
+        template: {
+            time(event) {
+                const { start, end, title } = event;
+
+                return `<span style="color: white;">${title}</span>`;
+            },
+            allday(event) {
+                return `<span style="color: gray;">${event.title}</span>`;
+            },
+        },
+        calendars: [
+            {
+                id: 'unavailable',
+                name: 'Unavailable',
+                backgroundColor: '#78787878',
+            },
+            {
+                id: 'personal',
+                name: 'Personal',
+                backgroundColor: '#078878',
+            },
+        ],
+    });
+
+    $.ajax({
+        url: '/bookings/scheduled',
+        type: "get",
+        data: "",
+        success: function(data) {
+            calendar.createEvents(data);
+
+            const urlParams = new URLSearchParams(window.location.search);
+            const userChosenDate = urlParams.get('starts');
+
+            if (userChosenDate !== null && calendar.getViewName() === 'week') {
+                const dateToMove = new Date(userChosenDate);
+                dateToMove.setDate(dateToMove.getDate()+1);
+
+                calendar.setDate(dateToMove);
+                calendar.changeView('day');
+            }
+        },
+        error: function(data) {}
+    });
+
+    calendar.setOptions({
+        week: {
+            taskView: false,
+        }
+    });
+
+    const newBtn = document.getElementById("newScheduleBtn");
+    const prevBtn = document.getElementById("prevBtn");
+    const nextBtn = document.getElementById("nextBtn");
+
+    prevBtn.addEventListener("click", e => {
+        calendar.prev();
+    });
+
+    nextBtn.addEventListener("click", e => {
+        calendar.next();
+    });
+</script>

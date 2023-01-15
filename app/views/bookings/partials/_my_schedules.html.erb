@@ -1,0 +1,36 @@
+<div class="dc-subpanel mt-5" style="border-top: 1px solid #eee !important;">
+  <div class="dc-subpaneltitle dc-subpaneltitlevtwo">
+    <% if display_user_button %>
+    <span>My Schedules <em>(showing only <%= dataset.size %>)</em></span>
+      <div class="dc-rightarea">
+        <div class="dc-btnaction">
+          <%= link_to user_bookings_path, class: 'dc-btn dc-btn-del dc-editbtn' do %>
+            <i class="fa fa-list"></i> Show All</a>
+          <% end %>
+        </div>
+      </div>
+    <% else %>
+      <span>My Schedules <em>(<%= dataset.size %>)</em></span>
+    <% end %>
+  </div>
+
+  <% dataset.each do |schedule| %>
+    <div class="dc-subpanel">
+      <div class="dc-subpaneltitle dc-subpaneltitlevtwo">
+        <span>
+          <%= schedule.starts.strftime('%A, %y-%m-%d') %>
+          <em> (<%= schedule.starts.strftime('%T') %> - <%= schedule.ends.strftime('%T') %>)</em>
+        </span>
+        <% if display_controllers %>
+          <div class="dc-rightarea">
+            <div class="dc-btnaction">
+              <%= link_to bookings_path(id: schedule.id), method: :delete, class: 'dc-delbtn' do %>
+                <i class="fas fa-trash-alt"></i>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+</div>

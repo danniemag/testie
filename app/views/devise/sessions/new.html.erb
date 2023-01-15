@@ -1,0 +1,39 @@
+<section class="dc-haslayout dc-dbsectionspace dc-dbsectionspacetest">
+  <div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-9">
+      <div class="dc-dashboardbox dc-dashboardtabsholder dc-accountsettingholder">
+        <div class="dc-tabscontent tab-content">
+          <div class="dc-passwordholder tab-pane fade active show" id="dc-password">
+            <div class="dc-changepassword">
+              <div class="dc-tabscontenttitle">
+                <h3>log in</h3>
+              </div>
+              <%= form_for(resource, as: resource_name, url: session_path(resource_name),
+                           class: 'dc-formtheme dc-userform dc-sidepadding') do |f| %>
+                <fieldset>
+                  <div class="form-group form-group-half">
+                    <%= f.email_field :email, autofocus: true, autocomplete: "email",
+                                      class: 'form-control', placeholder: 'insert email' %>
+                  </div>
+                  <div class="form-group form-group-half">
+                    <%= f.password_field :password, autocomplete: "current-password", placeholder: 'insert password' %>
+                  </div>
+                  <div class="form-group">
+                    <% if devise_mapping.rememberable? %>
+                      <span class="dc-checkbox">
+                        <%= f.check_box :remember_me %>
+                        <%= f.label :remember_me %>
+                      </span>
+                    <% end %>
+                    <%= f.submit "log in" %>
+                  </div>
+                </fieldset>
+              <% end %>
+            </div>
+          </div>
+          <%#= render "devise/shared/links" %>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

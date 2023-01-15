@@ -1,0 +1,27 @@
+<div class="dc-haslayout dc-dbsectionspace">
+  <div class="dc-dashboardbox">
+    <div class="dc-dashboardboxtitle dc-titlewithbtn">
+      <h2>My Appointments</h2>
+    </div>
+    <div class="dc-dashboardboxcontent dc-offerday-holder">
+      <div class="dc-clinics">
+        <div>
+          <figure class="dc-clinicsimg"><img src="images/clinics/img-01.jpg" alt="img description"><figcaption><span class="dc-featuredtag"><i class="fa fa-bolt"></i></span></figcaption></figure>
+        </div>
+        <div class="dc-clinics-content">
+          <div class="dc-clinics-title">
+            <a href="">Location</a>
+            <h4>The Shire Warehouse <i class="fa fa-check-circle"></i></h4>
+            <span>House of Bilbo Baggins, no. 9 - The Shire, Middle Earth</span>
+          </div>
+        </div>
+      </div>
+      <div id="dc-childaccordion" class="dc-childaccordion dc-offeraccordion" role="tablist" aria-multiselectable="true">
+        <%= render 'bookings/partials/my_schedules',
+                   dataset: @user_bookings,
+                   display_user_button: false,
+                   display_controllers: true %>
+      </div>
+    </div>
+  </div>
+</div>

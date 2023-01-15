@@ -1,0 +1,60 @@
+<header id="dc-header" class="dc-header dc-haslayout dc-header-dashboard" style>
+  <div class="dc-navigationarea">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <strong class="dc-logo">
+            <%= link_to root_path do %>
+              <%= image_tag 'favicon.png', size: 100 %>
+            <% end %>
+          </strong>
+          <div class="dc-rightarea">
+            <nav id="dc-nav" class="dc-nav navbar-expand-lg">
+              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="lnr lnr-menu"></i>
+              </button>
+              <div class="collapse navbar-collapse dc-navigation" id="navbarNav">
+                <ul class="navbar-nav nav-Js">
+                  <li class="menu-item-has-children page_item_has_children "><span class="dc-dropdowarrow"><i class="lnr lnr-chevron-right"></i></span>
+                    <a href="javascript:void(0);">Menu</a>
+                    <ul class="sub-menu">
+                      <li><%= link_to 'Book Now', root_path %></li>
+                      <li><%= link_to 'User Bookings', user_bookings_path %></li>
+                    </ul>
+                  </li>
+                  <li class="menu-item-has-children page_item_has_children"><span class="dc-dropdowarrow"><i class="lnr lnr-chevron-right"></i></span>
+                    <a href="https://github.com/seliksy/tlink" target="_blank">Documentation</a>
+                  </li>
+                  <li class="menu-item-has-children page_item_has_children"><span class="dc-dropdowarrow"><i class="lnr lnr-chevron-right"></i></span>
+                    <a href="javascript:void(0);">About Me</a>
+                    <ul class="sub-menu">
+                      <li class="menu-item-has-children page_item_has_children dc-notificationicon"><span class="dc-dropdowarrow"><i class="lnr lnr-chevron-right"></i></span><span class="dc-dropdowarrow"><i class="lnr lnr-chevron-right"></i></span>
+                        <li><a href="https://www.linkedin.com/in/danniemagalhaes/" target="_blank">LinkedIn</a></li>
+                        <li><a href="https://daniellemagalhaes.com.br/" target="_blank">Website</a></li>
+                        <li><a href="https://github.com/seliksy/" target="_blank">Github - too bad the good repos are private :(</a></li>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </div>
+            </nav>
+            <div class="dc-userlogedin">
+              <div class="dc-username">
+                <h6><%= current_user.email %></h6>
+              </div>
+              <nav class="dc-usernav">
+                <ul>
+                  <li>
+                    <%= link_to(destroy_user_session_path) do %>
+                      <i class="fa-solid fa-arrow-right-from-bracket"></i> <span>Sair</span>
+                    <% end %>
+                  </li>
+                </ul>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>

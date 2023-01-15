@@ -1,0 +1,46 @@
+<div id="booking" class="section">
+  <div class="">
+    <div class="index-bar">
+      <div class="row">
+        <div class="booking-form">
+          <%= form_tag new_bookings_path, method: :get, name: 'filter_form' do %>
+            <div class="row no-margin">
+              <div class="col-md-3">
+                <div class="form-header">
+                  <h2>Book Now</h2>
+                </div>
+              </div>
+              <div class="col-md-7">
+                <div class="row no-margin">
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <span class="form-label">Date</span>
+                      <input class="form-control" type="date" name="starts">
+                    </div>
+                  </div>
+                  <div class="col-md-2"></div>
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <span class="form-label">Duration</span>
+                      <select name="duration">
+                        <% (1..96).each do |slot| %>
+                          <option value="<%= slot*15 %>"><%= "#{(slot*15)/60}h #{(slot*15)%60}min" %></option>
+                        <% end %>
+                      </select>
+                      <span class="select-arrow"></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-2">
+                <div class="form-btn">
+                  <button class="submit-btn">Check availability</button>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
