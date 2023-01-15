@@ -1,7 +1,7 @@
 <div class="dc-subpanel mt-5" style="border-top: 1px solid #eee !important;">
   <div class="dc-subpaneltitle dc-subpaneltitlevtwo">
-    <span>My Schedules <em>(<%= dataset.size %>)</em></span>
     <% if display_user_button %>
+    <span>My Schedules <em>(showing only <%= dataset.size %>)</em></span>
       <div class="dc-rightarea">
         <div class="dc-btnaction">
           <%= link_to user_bookings_path, class: 'dc-btn dc-btn-del dc-editbtn' do %>
@@ -9,6 +9,8 @@
           <% end %>
         </div>
       </div>
+    <% else %>
+      <span>My Schedules <em>(<%= dataset.size %>)</em></span>
     <% end %>
   </div>
 
