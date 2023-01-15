@@ -29,7 +29,7 @@
 
     <div id="dc-wrapper" class="dc-wrapper dc-haslayout <%= 'logistic-bkg' if action_name == 'index' %>">
       <div class="dc-contentwrapper">
-        <%= render 'partials/header' %>
+        <%= render 'partials/header' if user_signed_in? %>
         <main id="dc-main" class="dc-main dc-main-test dc-haslayout">
           <%= render 'partials/flash_messages' if flash.present? %>
           <%= yield %>

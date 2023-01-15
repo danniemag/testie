@@ -1192,15 +1192,16 @@ a:active{color: var(--themecolor);}
 	border:1px solid #ddd;
 }
 .dc-userimg img{
-	width: 100%;
+	width: 10%;
 	padding: 3px;
 	display: block;
 	border-radius: 50%;
 }
 .dc-username{
+	width: 100%;
 	overflow: hidden;
 	position: relative;
-	padding: 7px 30px 7px 0;
+	padding: 14px 30px 7px 0;
 }
 .dc-username h4{
 	max-width: 100px;
@@ -2258,7 +2259,7 @@ body.dc-userlogin .dc-loginarea{display: none;}
 .dc-headerform .dc-formbtn a{border-radius: 0 4px 4px 0;}
 .dc-header-dashboard .dc-navigation > ul > li > a{padding: 28px 25px;}
 .dc-header-dashboard .dc-userlogedin{padding: 13px 0;}
-.dc-header-dashboard .dc-logo{margin:24px 0 23px 0;}
+.dc-header-dashboard .dc-logo{margin:0 0 0 0;}
 .dc-sidebarwrapper {
 	top: 0;
 	left: 0;
