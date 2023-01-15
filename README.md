@@ -24,22 +24,7 @@ users:
 
 
 ## Overview 
-Here follow some videos demonstrating the main feature of the application:
-
-- Date input error handling: _error messages displayed to prevent incorrect data_ 
-
-
-- How to book an appointment
-
-
-- Mechanism of overlapping prevention
-
-
-- User Area: _a space where users can manage their bookings, check other available dates and perform operations_
-
-
-- Mechanism of booking removal
-
+In the pull request you can find some some videos demonstrating app's main features.
 
 ## Acceptance Criteria
 
