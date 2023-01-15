@@ -22,11 +22,6 @@
         <% if display_controllers %>
           <div class="dc-rightarea">
             <div class="dc-btnaction">
-              <%= link_to '', { class: 'dc-editbtn',
-                                'data-bs-toggle': 'modal',
-                                'data-bs-target': "#modalEdit#{schedule.id}" } do %>
-                <i class="fas fa-pencil-alt"></i>
-              <% end %>
               <%= link_to bookings_path(id: schedule.id), method: :delete, class: 'dc-delbtn' do %>
                 <i class="fas fa-trash-alt"></i>
               <% end %>

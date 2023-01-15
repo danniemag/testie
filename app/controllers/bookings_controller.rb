@@ -52,10 +52,9 @@ class BookingsController < ApplicationController
 
   def destroy
     @booking.destroy
-
     flash[:success] = "Appointment successfully deleted"
 
-    redirect_to root_path
+    redirect_to user_bookings_path
   end
 
   def user
