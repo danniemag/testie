@@ -10,7 +10,7 @@ RSpec.describe Booking, type: :model do
       end
 
       it 'raises and error' do
-        expect(booking.save).to raise_error
+        expect(booking.save).to be_falsey
       end
     end
 
@@ -20,7 +20,7 @@ RSpec.describe Booking, type: :model do
       end
 
       it 'raises and error' do
-        expect(booking.save).to raise_error
+        expect(booking.save).to be_falsey
       end
     end
 
@@ -30,7 +30,7 @@ RSpec.describe Booking, type: :model do
       end
 
       it 'raises and error' do
-        expect(booking.save).to raise_error
+        expect(booking.save).to be_falsey
       end
     end
 

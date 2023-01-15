@@ -24,7 +24,7 @@ class BookingsController < ApplicationController
     )
 
     if @booking.save
-      flash[:success] = "Booking successfully scheduled"
+      flash[:success] = "Booking successfully generated"
 
       redirect_to user_bookings_path
     else
@@ -39,7 +39,7 @@ class BookingsController < ApplicationController
   def destroy
     @booking.destroy
 
-    flash[:success] = "Appointment successfully deleted"
+    flash[:success] = "Booking successfully deleted"
 
     redirect_to user_bookings_path
   end

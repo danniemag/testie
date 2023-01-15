@@ -47,41 +47,6 @@ class SetsAvailableSlots
 
   attr_reader :chosen_date, :duration, :available_slots
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-  # chosen_date = params[:starts].to_date
-  # duration = params[:duration].to_i
-  #
-  # if chosen_date.blank?
-  #   flash[:error] = "Date cannot be blank"
-  #   redirect_back(fallback_location: root_path)
-  # elsif chosen_date < Date.today
-  #   flash[:error] = "Cannot choose a past date [#{params[:starts]}]"
-  #   redirect_back(fallback_location: root_path)
-  # else
-  #   bookings = find_bookings(chosen_date)
-  #
-  #   t = (chosen_date == Date.today) ? Time.now.utc : chosen_date.to_time.utc.beginning_of_day
-  #   slot_multiple_of_fifteen = (t - t.sec - (t.min % 15 * 60)) + duration.minutes
-  #
-  #   (slot_multiple_of_fifteen.to_i..slot_multiple_of_fifteen.end_of_day.to_i).to_a.in_groups_of(15.minutes).collect(&:first).collect do |t|
-  #     next if has_overlapping?(bookings, Time.at(t), duration)
-  #     @available_slots << Time.at(t).utc
-  #   end
-  #   @available_slots
-  # end
-
   def get_range_parameters
     bookings = find_bookings(chosen_date)
 
