@@ -14,8 +14,7 @@
   </head>
 
   <body>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+    <%= render 'partials/flash_messages' if flash.present? %>
     <%= yield %>
   </body>
 </html>

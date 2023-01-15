@@ -13,8 +13,10 @@ Rails.application.config.assets.paths << Rails.root.join('node_modules')
 # folder are already added.
 Rails.application.config.assets.precompile += %w(
   toastui-calendar.min.css
+  toastr.css
 
   jquery.js
   jquery_ujs.js
   toastui-calendar.min.js
+  toastr.min.js
 )

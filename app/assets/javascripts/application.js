@@ -15,4 +15,5 @@
 //= require jquery3
 //= require jquery_ujs
 //= require toastui-calendar.min
+//= require toastr.min
 
