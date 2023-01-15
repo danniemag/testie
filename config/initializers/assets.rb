@@ -30,6 +30,7 @@ Rails.application.config.assets.precompile += %w(
   main/vendors/transitions.css
   toastui-calendar.min.css
   toastr.css
+  main/style.css
 
   jquery.js
   jquery_ujs.js

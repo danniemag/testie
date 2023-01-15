@@ -1,6 +1,6 @@
 <div id="booking" class="section">
-  <div class="section-center">
-    <div class="container">
+  <div class="">
+    <div class="index-bar">
       <div class="row">
         <div class="booking-form">
           <%= form_tag new_bookings_path, method: :get, name: 'filter_form' do %>
@@ -14,7 +14,7 @@
                 <div class="row no-margin">
                   <div class="col-md-4">
                     <div class="form-group">
-                      <span class="form-label">Start Day</span>
+                      <span class="form-label">Date</span>
                       <input class="form-control" type="date" name="starts">
                     </div>
                   </div>
